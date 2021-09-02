@@ -7,9 +7,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,10 +29,9 @@ public class IndexController {
 
 
     @GetMapping("/")
-    @ResponseBody
     @ApiOperation(value = "测试")
     public String index() {
-        return "111111111111";
+        return "index";
     }
 
     @GetMapping("/a")
@@ -43,28 +41,31 @@ public class IndexController {
     }
 
     @GetMapping("/list")
-    @ResponseBody
     @ApiOperation(value = "用户用户列表")
-    public Result getList() {
+    public String getList(Model model) {
 
         List<User> userList = userService.getUserList();
 
-        return new Result(userList);
+        model.addAttribute(userList);
+        return "userInfo";
     }
 
-    @PostMapping("/login")
-    @ResponseBody
+    @RequestMapping(value = "/login", method=RequestMethod.POST)
     @ApiOperation(value = "登录")
-    public Result login(String userName, String password) {
+    public String login(@RequestParam("username") String username,
+                        @RequestParam("password") String password, Model model) {
 
         //获取到的数据
         List<User> userList = userService.getUserList();
 
-        for (User user : userList) {
-            if (user.getName().equals(userName) && password.equals(user.getPassword())) {
-                return new Result(1, "登录成功", user);
+        for (User user1 : userList) {
+            if (user1.getUserName().equals(username) && password.equals(user1.getPassword())) {
+                user1.setPassword("密码123456！你试试.");
+                model.addAttribute(user1);
+                return "userInfo";
             }
         }
-        return new Result("登录失败");
+        return "null";
     }
+
 }

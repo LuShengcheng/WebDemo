@@ -1,5 +1,7 @@
 package cn.lsc.entry;
 
+import javax.xml.crypto.Data;
+
 /**
  * <p>
  * 用户类
@@ -13,7 +15,7 @@ public class User {
     /**
      * 用户名
      */
-    private String name;
+    private String userName;
 
     /**
      * id
@@ -26,16 +28,25 @@ public class User {
     private String password;
 
     /**
-     * 电话
+     * 创建时间
      */
-    private String phone;
+    private Data createTime;
+    /**
+     * 修改时间
+     */
+    private Data updateTime;
 
-    public String getName() {
-        return name;
+    /**
+     * 是否删除标志
+     */
+    private int del;
+
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getId() {
@@ -54,21 +65,28 @@ public class User {
         this.password = password;
     }
 
-    public String getPhone() {
-        return phone;
+    public Data getCreateTime() {
+        return createTime;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setCreateTime(Data createTime) {
+        this.createTime = createTime;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", id='" + id + '\'' +
-                ", password='" + password + '\'' +
-                ", phone='" + phone + '\'' +
-                '}';
+    public Data getUpdateTime() {
+        return updateTime;
     }
+
+    public void setUpdateTime(Data updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public int getDel() {
+        return del;
+    }
+
+    public void setDel(int del) {
+        this.del = del;
+    }
+
 }
