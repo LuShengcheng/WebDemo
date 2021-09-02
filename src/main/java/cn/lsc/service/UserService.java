@@ -26,4 +26,13 @@ public interface UserService {
    */
     public List<User> getUserList();
 
+    /**
+     * description 添加用户
+     * @param user
+     * @return boolean
+     * @author lushengcheng
+     * @since 2021/9/2 21:40
+    */
+    boolean add(User user);
+
 }

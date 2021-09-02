@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+</head>
+<body>
+
+<form action="#" method="post" th:action="@{/add}">
+    <label>用户名：</label><input type="text" th:field="*{username}" placeholder="请输入用户名...">
+    <label>密码：</label><input type="password" th:field="*{password}" placeholder="请输密码...">
+    <input type="submit" value="提交">
+</form>
+
+</body>
+</html>

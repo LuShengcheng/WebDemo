@@ -35,4 +35,20 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectList(null);
     }
 
+    /**
+     * description 添加用户
+     *
+     * @param user
+     * @return boolean
+     * @author lushengcheng
+     * @since 2021/9/2 21:40
+     */
+    @Override
+    public boolean add(User user) {
+
+        //insert into webdemo.user (user_name, password, create_time, update_time) values ('abc','2345','2021-09-02','2021-09-02')
+        return userMapper.insert(user) > 0;
+
+    }
+
 }
